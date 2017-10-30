@@ -55,14 +55,13 @@ func (my *Server) handler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer conn.Close()
 
-	if my.OnConnect != nil {
-		my.OnConnect(clientId)
-	}
-
 	my.clientConn.Lock()
 	my.clientConn.m[clientId] = conn
 	my.clientConn.Unlock()
 
+	if my.OnConnect != nil {
+		go my.OnConnect(clientId)
+	}
 	my.wsHandler(clientId, conn)
 
 	my.clientConn.Lock()
