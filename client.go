@@ -101,7 +101,7 @@ func (my *Client) writeCloseFrame() error {
 // Read do forever web socket read message loop. It is safe from concurrent
 // access, will return on error or after receive close frame, and will call the
 // call back function whenever the message (read from server) ready.
-func (my *Client) Read(receive func(data []byte)) error {
+func (my *Client) ReadLoop(receive func(data []byte)) error {
 	my.rdLock.Lock()
 	defer my.rdLock.Unlock()
 	if my.conn == nil {

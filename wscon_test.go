@@ -33,7 +33,7 @@ func ExampleConnect() {
 	// connection established
 
 	go func() {
-		c.Read(func(data []byte) {
+		c.ReadLoop(func(data []byte) {
 			// Dummy receive handler
 		})
 	}()
@@ -54,7 +54,7 @@ func ExampleConnectTLS() {
 	// connection established
 
 	go func() {
-		c.Read(func(data []byte) {
+		c.ReadLoop(func(data []byte) {
 			// Dummy receive handler
 		})
 	}()
@@ -77,7 +77,7 @@ func ExampleConnectTLSSelfSigned() {
 	// connection established
 
 	go func() {
-		c.Read(func(data []byte) {
+		c.ReadLoop(func(data []byte) {
 			// Dummy receive handler
 		})
 	}()
